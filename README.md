@@ -1,6 +1,6 @@
 # Car Door and Door Handle Detector
 
-Uses images and annotations from the ADE20K Dataset from MIT (see references) to detect car doors and door handles by fine-tuning a pre-trained Mobilenet SSD v2 detector. Once the fine-tuned model is trained, it is then converted to OpenVINO &trade; format and finally to a blob format for running directly on the OAK-D camera hardware (see references).
+Uses images and annotations from the ADE20K Dataset from MIT (see references) to detect car doors and door handles by fine-tuning a pre-trained Mobilenet SSD v2 detector. Once the fine-tuned model is trained, it is then converted to OpenVINO &trade; format and finally to a blob format for running directly on the OAK-D camera hardware.
 
 ## Requirements
 
@@ -113,7 +113,9 @@ Includes segmentation with bounding boxes and associated annotation in XML forma
 ## Model v1 Output
 
 The first version of the model works pretty well. It defineitly needs some work.  
+
 Note there are only 2 classes: `door` and `handle`.  
+
 In future work, we would like to differentiate front vs back door and ensure more handles are detected.  
 
 ![Sample image with detections #1](/images/sample1.png "Sample Detections #1")
@@ -129,3 +131,7 @@ In future work, we would like to differentiate front vs back door and ensure mor
 ![Sample image with detections #6](/images/sample6.png "Sample Detections #6")
 
 ## References
+
+**Scene Parsing through ADE20K Dataset.** Bolei Zhou, Hang Zhao, Xavier Puig, Sanja Fidler, Adela Barriuso and Antonio Torralba. Computer Vision and Pattern Recognition (CVPR), 2017. [PDF](http://people.csail.mit.edu/bzhou/publication/scene-parse-camera-ready.pdf) [website](https://groups.csail.mit.edu/vision/datasets/ADE20K/)  
+
+**wider2pascal.** Samuel Albanie. [Github](https://github.com/albanie/wider2pascal)
