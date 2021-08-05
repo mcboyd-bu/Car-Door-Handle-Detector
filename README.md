@@ -1,6 +1,6 @@
 # Car Door and Door Handle Detector
 
-Uses images and annotations from the ADE20K Dataset from MIT (see references) to detect car doors and door handles by fine-tuning a pre-trained Mobilenet SSD v2 detector. Once the fine-tuned model is trained, it is then converted to OpenVINO .&trade; format and finally to a blob format for running directly on the OAK-D camera hardware (see references).
+Uses images and annotations from the ADE20K Dataset from MIT (see references) to detect car doors and door handles by fine-tuning a pre-trained Mobilenet SSD v2 detector. Once the fine-tuned model is trained, it is then converted to OpenVINO &trade; format and finally to a blob format for running directly on the OAK-D camera hardware (see references).
 
 ## Requirements
 
@@ -25,7 +25,107 @@ Uses images and annotations from the ADE20K Dataset from MIT (see references) to
 - `\Matlab\generatePascalXML.m`
   - Called for each image of interest (see list of parameters in the file's comments)
   - Outputs formatted XML file with bounding boxes and classes listed
+- `Model\v1\frozen_inference_graph_openvino_2021.3_5shave.blob`
+  - Final model in blob format for deployment on the OAK-D hardware
+- `Model\v1\saved_model.pb`
+  - Trained inference graph (before conversion to OpenVINO &trade; and blob formats)
 
-## Other Resources
+## Example Matlab Code Output
 
-- Google Colab notebook to perform initial training
+Includes segmentation with bounding boxes and associated annotation in XML format.
+
+**NOTE:** Because the ADE20K dataset is not publicly available, only 1 example is being shown
+
+<details>
+  <summary>Click to show XML annotation</summary>
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<annotation>
+
+  <folder>train</folder>
+
+  <filename>ADE_train_00015114.jpg</filename>
+
+  <path>\images\train\ADE_train_00015114.jpg</path>
+
+  <source>
+    <database>ADE20K Dataset</database>
+    <annotation>ADE20K</annotation>
+  </source>
+
+  <size>
+    <width>1600</width>
+    <height>1200</height>
+    <depth>3</depth>
+  </size>
+
+  <segmented>0</segmented>
+
+  <object>
+    <name>door</name>
+    <bndbox>
+      <xmin>457</xmin>
+      <ymin>228</ymin>
+      <xmax>829</xmax>
+      <ymax>612</ymax>
+    </bndbox>
+  </object>
+
+  <object>
+    <name>handle</name>
+    <bndbox>
+      <xmin>652</xmin>
+      <ymin>390</ymin>
+      <xmax>722</xmax>
+      <ymax>427</ymax>
+    </bndbox>
+  </object>
+
+  <object>
+    <name>door</name>
+    <bndbox>
+      <xmin>734</xmin>
+      <ymin>223</ymin>
+      <xmax>1084</xmax>
+      <ymax>648</ymax>
+    </bndbox>
+  </object>
+
+  <object>
+    <name>handle</name>
+    <bndbox>
+      <xmin>965</xmin>
+      <ymin>425</ymin>
+      <xmax>1038</xmax>
+      <ymax>457</ymax>
+    </bndbox>
+  </object>
+
+</annotation>
+
+```
+
+</details>
+
+<img src="/images/ADE_train_00015114.jpg" alt="Example image with segments and bounding boxes" width="500"/>
+
+## Model v1 Output
+
+The first version of the model works pretty well. It defineitly needs some work.  
+Note there are only 2 classes: `door` and `handle`.  
+In future work, we would like to differentiate front vs back door and ensure more handles are detected.  
+
+![Sample image with detections #1](/images/sample1.png "Sample Detections #1")
+
+![Sample image with detections #2](/images/sample2.png "Sample Detections #2")
+
+![Sample image with detections #3](/images/sample3.png "Sample Detections #3")
+
+![Sample image with detections #4](/images/sample4.png "Sample Detections #4")
+
+![Sample image with detections #5](/images/sample5.png "Sample Detections #5")
+
+![Sample image with detections #6](/images/sample6.png "Sample Detections #6")
+
+## References
