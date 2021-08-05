@@ -108,7 +108,7 @@ Includes segmentation with bounding boxes and associated annotation in XML forma
 
 </details>
 
-<img src="/images/ADE_train_00015114.jpg" alt="Example image with segments and bounding boxes" width="500"/>
+![Example image with segments and bounding boxes](/images/ADE_train_00015114.jpg "Example image with segments and bounding boxes")
 
 ## Model v1 Output
 
